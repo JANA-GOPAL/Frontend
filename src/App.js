@@ -4,17 +4,17 @@ import Home from "./Home";
 import Landing from "./Landing";
 
 function App() {
-  const [user, setUser] = useState(localStorage.getItem("email"));
+  const [page, setPage] = useState("landing");
 
-  if (user === "login") {
-    return <Login setUser={setUser} />;
+  if (page === "login") {
+    return <Login setUser={() => setPage("home")} />;
   }
 
-  if (user) {
+  if (page === "home") {
     return <Home />;
   }
 
-  return <Landing setUser={setUser} />;
+  return <Landing setUser={setPage} />;
 }
 
 export default App;
