@@ -4,7 +4,6 @@ function Landing({ setUser }) {
   const [email, setEmail] = useState("");
   const [time, setTime] = useState("");
 
-  // Clock
   useEffect(() => {
     const interval = setInterval(() => {
       const now = new Date();
@@ -18,39 +17,43 @@ function Landing({ setUser }) {
       alert("Enter email");
       return;
     }
-    localStorage.setItem("email", email);
-    setUser(email);
+    setUser("home");
   };
 
   return (
-    <div style={{
-      height: "100vh",
-      backgroundImage:
-        "url('https://assets.nflxext.com/ffe/siteui/vlv3/9c3e4d87-1b2e-4c9c-9e8c-9f0e1e5e3f8c/india-en-20240101-popsignuptwoweeks-perspective_alpha_website_large.jpg')",
-      backgroundSize: "cover",
-      backgroundPosition: "center",
-      color: "white",
-      position: "relative"
-    }}>
-
+    <div
+      style={{
+        height: "100vh",
+        backgroundImage:
+          "url('https://assets.nflxext.com/ffe/siteui/vlv3/9c3e4d87-1b2e-4c9c-9e8c-9f0e1e5e3f8c/india-en-20240101-popsignuptwoweeks-perspective_alpha_website_large.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        color: "white",
+        position: "relative",
+      }}
+    >
       {/* Dark overlay */}
-      <div style={{
-        position: "absolute",
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        backgroundColor: "rgba(0,0,0,0.7)"
-      }} />
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundColor: "rgba(0,0,0,0.7)",
+        }}
+      />
 
       {/* Top bar */}
-      <div style={{
-        position: "relative",
-        display: "flex",
-        justifyContent: "space-between",
-        padding: "20px",
-        zIndex: 2
-      }}>
+      <div
+        style={{
+          position: "relative",
+          display: "flex",
+          justifyContent: "space-between",
+          padding: "20px",
+          zIndex: 2,
+        }}
+      >
         <h2 style={{ color: "red" }}>AbsoluteCinema</h2>
 
         <div style={{ display: "flex", gap: "15px", alignItems: "center" }}>
@@ -62,41 +65,54 @@ function Landing({ setUser }) {
         </div>
       </div>
 
-      {/* Center content */}
-      <div style={{
-        position: "relative",
-        zIndex: 2,
-        height: "80%",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        textAlign: "center"
-      }}>
-        <h1>Unlimited movies, shows, and more</h1>
-        <p>Watch anywhere. Cancel anytime.</p>
+      {/* Center */}
+      <div
+        style={{
+          position: "relative",
+          zIndex: 2,
+          height: "80%",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          textAlign: "center",
+        }}
+      >
+        <h1 style={{ fontSize: "48px", fontWeight: "bold" }}>
+          Unlimited movies, TV shows and more
+        </h1>
+
+        <h3 style={{ marginTop: "10px" }}>
+          Watch anywhere. Cancel anytime.
+        </h3>
+
+        <p style={{ marginTop: "20px" }}>
+          Ready to watch? Enter your email to create or restart membership.
+        </p>
 
         <div style={{ marginTop: "20px", display: "flex" }}>
           <input
             type="email"
-            placeholder="Enter your email"
+            placeholder="Email address"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             style={{
-              padding: "12px",
-              width: "300px",
-              border: "none"
+              padding: "15px",
+              width: "350px",
+              border: "none",
+              fontSize: "16px",
             }}
           />
 
           <button
             onClick={handleStart}
             style={{
-              padding: "12px",
+              padding: "15px 25px",
               backgroundColor: "red",
               color: "white",
               border: "none",
-              cursor: "pointer"
+              fontSize: "18px",
+              cursor: "pointer",
             }}
           >
             Get Started →
