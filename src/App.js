@@ -4,7 +4,7 @@ import Home from "./Home";
 import Landing from "./Landing";
 
 function App() {
-  const [page, setPage] = useState("landing");
+  const [page, setPage] = useState("landing"); // FORCE landing
 
   if (page === "login") {
     return <Login setUser={() => setPage("home")} />;
