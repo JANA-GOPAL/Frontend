@@ -1,10 +1,294 @@
-body {
-  margin: 0;
-  padding: 0;
-  background-color: black;
-  font-family: 'Poppins', sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
-* {
-  box-sizing: border-box;
+html,
+body,
+#root{
+  width:100%;
+  height:100%;
+  overflow-x:hidden;
+  font-family:'Poppins',sans-serif;
+  background:#000;
+}
+
+body{
+  background:#000;
+}
+
+/* LANDING PAGE */
+
+.landing{
+  min-height:100vh;
+  position:relative;
+
+  background:
+  linear-gradient(
+      rgba(0,0,0,0.75),
+      rgba(0,0,0,0.85)
+    ),
+  url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=1920");
+
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+
+  color:white;
+}
+
+/* HEADER */
+
+.navbar{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  padding:25px 60px;
+  z-index:100;
+}
+
+.logo{
+  font-family:'Cinzel',serif;
+  font-size:2rem;
+  font-weight:700;
+  color:#d4af37;
+  letter-spacing:2px;
+  text-shadow:0 0 20px rgba(212,175,55,0.4);
+}
+
+.nav-right{
+  display:flex;
+  align-items:center;
+  gap:20px;
+}
+
+.clock{
+  color:#d4af37;
+  font-weight:600;
+  font-size:1rem;
+}
+
+.language{
+  background:rgba(0,0,0,0.5);
+  color:white;
+  border:1px solid rgba(212,175,55,0.5);
+  padding:10px 15px;
+  border-radius:8px;
+}
+
+/* HERO */
+
+.hero{
+  height:100vh;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+}
+
+.hero-content{
+  max-width:900px;
+  padding:40px;
+}
+
+.hero-content h1{
+  font-size:4rem;
+  line-height:1.1;
+  margin-bottom:20px;
+
+  font-weight:700;
+
+  text-shadow:
+    0 0 20px rgba(0,0,0,0.7);
+}
+
+.gold{
+  color:#d4af37;
+}
+
+.hero-content p{
+  font-size:1.3rem;
+  color:#ddd;
+  margin-bottom:35px;
+}
+
+/* EMAIL BOX */
+
+.email-box{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.email-box input{
+  width:450px;
+  max-width:90vw;
+
+  padding:18px;
+
+  border:none;
+  outline:none;
+
+  border-radius:8px;
+
+  background:rgba(255,255,255,0.1);
+  backdrop-filter:blur(15px);
+
+  color:white;
+  font-size:1rem;
+
+  border:1px solid rgba(255,255,255,0.2);
+}
+
+.email-box input::placeholder{
+  color:#ccc;
+}
+
+.email-box button{
+  padding:18px 35px;
+
+  border:none;
+  border-radius:8px;
+
+  background:#d4af37;
+  color:black;
+
+  font-weight:700;
+  font-size:1rem;
+
+  cursor:pointer;
+
+  transition:0.3s;
+}
+
+.email-box button:hover{
+  transform:translateY(-2px);
+  box-shadow:0 0 20px rgba(212,175,55,0.5);
+}
+
+.login-link{
+  margin-top:25px;
+  color:white;
+}
+
+.login-link span{
+  color:#d4af37;
+  font-weight:600;
+  cursor:pointer;
+}
+
+/* LOGIN PAGE */
+
+.login-page{
+  min-height:100vh;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  background:
+  linear-gradient(
+      rgba(0,0,0,0.8),
+      rgba(0,0,0,0.85)
+    ),
+  url("https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?q=80&w=1920");
+
+  background-size:cover;
+  background-position:center;
+}
+
+.login-card{
+  width:420px;
+
+  background:rgba(0,0,0,0.75);
+
+  backdrop-filter:blur(20px);
+
+  padding:40px;
+
+  border-radius:15px;
+
+  border:1px solid rgba(212,175,55,0.3);
+}
+
+.login-card h2{
+  text-align:center;
+  color:#d4af37;
+  margin-bottom:25px;
+}
+
+.login-card input{
+  width:100%;
+  margin-bottom:15px;
+
+  padding:14px;
+
+  border:none;
+  outline:none;
+
+  border-radius:8px;
+
+  background:#111;
+  color:white;
+}
+
+.login-card button{
+  width:100%;
+
+  padding:14px;
+
+  background:#d4af37;
+  color:black;
+
+  font-weight:700;
+
+  border:none;
+  border-radius:8px;
+
+  cursor:pointer;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+  .navbar{
+    padding:20px;
+  }
+
+  .logo{
+    font-size:1.3rem;
+  }
+
+  .hero-content h1{
+    font-size:2.3rem;
+  }
+
+  .hero-content p{
+    font-size:1rem;
+  }
+
+  .email-box{
+    flex-direction:column;
+    align-items:center;
+  }
+
+  .email-box button{
+    width:90%;
+  }
+
+  .login-card{
+    width:90%;
+  }
 }
