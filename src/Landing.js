@@ -2,130 +2,238 @@ import { useState, useEffect } from "react";
 
 function Landing({ setUser }) {
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [step, setStep] = useState(1);
+  const [language, setLanguage] = useState("en");
   const [time, setTime] = useState("");
 
   useEffect(() => {
     const interval = setInterval(() => {
       const now = new Date();
-      setTime(now.toLocaleTimeString());
+      setTime(
+        now.toLocaleTimeString([], {
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+        })
+      );
     }, 1000);
+
     return () => clearInterval(interval);
   }, []);
 
-  const handleStart = () => {
-    if (!email) {
-      alert("Enter email");
-      return;
-    }
-    setUser("home");
+  const content = {
+    en: {
+      title: "WHERE EVERY SCREEN BECOMES CINEMA",
+      subtitle:
+        "Stream movies, originals, live events and exclusive content.",
+      email: "Email Address",
+      password: "Create Password",
+      continue: "Continue",
+      enter: "Enter Cinema",
+      member: "Already a member?",
+      signin: "Sign In",
+    },
+    ta: {
+      title: "ஒவ்வொரு திரையும் ஒரு திரையரங்கம்",
+      subtitle:
+        "திரைப்படங்கள், தொடர்கள் மற்றும் சிறப்பு நிகழ்ச்சிகளை பாருங்கள்.",
+      email: "மின்னஞ்சல் முகவரி",
+      password: "கடவுச்சொல் உருவாக்கவும்",
+      continue: "தொடரவும்",
+      enter: "திரையரங்கில் நுழையவும்",
+      member: "ஏற்கனவே உறுப்பினரா?",
+      signin: "உள்நுழைக",
+    },
   };
+
+  const t = content[language];
 
   return (
     <div
       style={{
         height: "100vh",
-        backgroundImage:
-          "url('https://assets.nflxext.com/ffe/siteui/vlv3/9c3e4d87-1b2e-4c9c-9e8c-9f0e1e5e3f8c/india-en-20240101-popsignuptwoweeks-perspective_alpha_website_large.jpg')",
+        background:
+          "linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.85)), url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         color: "white",
-        position: "relative",
       }}
     >
-      {/* Dark overlay */}
+      {/* Navbar */}
       <div
         style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          backgroundColor: "rgba(0,0,0,0.7)",
-        }}
-      />
-
-      {/* Top bar */}
-      <div
-        style={{
-          position: "relative",
           display: "flex",
           justifyContent: "space-between",
-          padding: "20px",
-          zIndex: 2,
+          alignItems: "center",
+          padding: "25px 40px",
         }}
       >
-        <h2 style={{ color: "red" }}>AbsoluteCinema</h2>
+        <h1
+          style={{
+            color: "#D4AF37",
+            letterSpacing: "4px",
+            margin: 0,
+            fontWeight: "700",
+          }}
+        >
+          ABSOLUTE CINEMA
+        </h1>
 
-        <div style={{ display: "flex", gap: "15px", alignItems: "center" }}>
-          <select style={{ padding: "5px" }}>
-            <option>English</option>
-            <option>Tamil</option>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "15px",
+          }}
+        >
+          <span style={{ color: "#D4AF37" }}>{time}</span>
+
+          <select
+            value={language}
+            onChange={(e) => setLanguage(e.target.value)}
+            style={{
+              padding: "8px",
+              background: "#111",
+              color: "white",
+              border: "1px solid #D4AF37",
+            }}
+          >
+            <option value="en">English</option>
+            <option value="ta">தமிழ்</option>
           </select>
-          <span>{time}</span>
         </div>
       </div>
 
-      {/* Center */}
+      {/* Center Content */}
       <div
         style={{
-          position: "relative",
-          zIndex: 2,
           height: "80%",
           display: "flex",
-          flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
+          flexDirection: "column",
           textAlign: "center",
+          padding: "20px",
         }}
       >
-        <h1 style={{ fontSize: "48px", fontWeight: "bold" }}>
-          Unlimited movies, TV shows and more
+        <h1
+          style={{
+            maxWidth: "900px",
+            fontSize: "55px",
+            color: "#D4AF37",
+            marginBottom: "15px",
+          }}
+        >
+          {t.title}
         </h1>
 
-        <h3 style={{ marginTop: "10px" }}>
-          Watch anywhere. Cancel anytime.
-        </h3>
-
-        <p style={{ marginTop: "20px" }}>
-          Ready to watch? Enter your email to create or restart membership.
+        <p
+          style={{
+            fontSize: "20px",
+            maxWidth: "700px",
+            color: "#ddd",
+            marginBottom: "35px",
+          }}
+        >
+          {t.subtitle}
         </p>
 
-        <div style={{ marginTop: "20px", display: "flex" }}>
-          <input
-            type="email"
-            placeholder="Email address"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            style={{
-              padding: "15px",
-              width: "350px",
-              border: "none",
-              fontSize: "16px",
-            }}
-          />
+        {/* Step 1 */}
+        {step === 1 && (
+          <>
+            <input
+              type="email"
+              placeholder={t.email}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              style={{
+                width: "350px",
+                padding: "15px",
+                fontSize: "16px",
+                border: "1px solid #D4AF37",
+                background: "#111",
+                color: "white",
+                marginBottom: "15px",
+              }}
+            />
 
-          <button
-            onClick={handleStart}
-            style={{
-              padding: "15px 25px",
-              backgroundColor: "red",
-              color: "white",
-              border: "none",
-              fontSize: "18px",
-              cursor: "pointer",
-            }}
-          >
-            Get Started →
-          </button>
-        </div>
+            <button
+              onClick={() => {
+                if (!email) {
+                  alert("Enter email");
+                  return;
+                }
+                setStep(2);
+              }}
+              style={{
+                padding: "15px 35px",
+                background: "#D4AF37",
+                border: "none",
+                cursor: "pointer",
+                fontWeight: "bold",
+              }}
+            >
+              {t.continue}
+            </button>
+          </>
+        )}
 
-        <p style={{ marginTop: "15px" }}>
-          Already a user?{" "}
+        {/* Step 2 */}
+        {step === 2 && (
+          <>
+            <input
+              type="password"
+              placeholder={t.password}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              style={{
+                width: "350px",
+                padding: "15px",
+                fontSize: "16px",
+                border: "1px solid #D4AF37",
+                background: "#111",
+                color: "white",
+                marginBottom: "15px",
+              }}
+            />
+
+            <button
+              onClick={() => {
+                if (!password) {
+                  alert("Create password");
+                  return;
+                }
+
+                localStorage.setItem("email", email);
+                localStorage.setItem("password", password);
+
+                setUser("home");
+              }}
+              style={{
+                padding: "15px 35px",
+                background: "#D4AF37",
+                border: "none",
+                cursor: "pointer",
+                fontWeight: "bold",
+              }}
+            >
+              {t.enter}
+            </button>
+          </>
+        )}
+
+        <p style={{ marginTop: "25px" }}>
+          {t.member}{" "}
           <span
-            style={{ color: "red", cursor: "pointer" }}
             onClick={() => setUser("login")}
+            style={{
+              color: "#D4AF37",
+              cursor: "pointer",
+              fontWeight: "bold",
+            }}
           >
-            Sign In
+            {t.signin}
           </span>
         </p>
       </div>
